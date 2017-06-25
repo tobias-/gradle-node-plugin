@@ -1,9 +1,10 @@
 Changelog
 =========
 
-Version 1.3.0 *(unreleased)*
+Version 2.0.0 *(unreleased)*
 ----------------------------
 
+* Use Gradle 4.0 and Java 7 (#236)
 * ...
 
 Version 1.2.0 *(2017-06-14)*
