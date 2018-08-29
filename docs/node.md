@@ -194,6 +194,11 @@ node {
 
   // Set the work directory where node_modules should be located
   nodeModulesDir = file("${project.projectDir}")
+
+  // Set this to true if you want to use the versions saved
+  // in package-lock.json. If package-lock.json does not exist, 
+  // this option does nothing.   
+  npmVersionsFromPackageLock = false
 }
 ```
 

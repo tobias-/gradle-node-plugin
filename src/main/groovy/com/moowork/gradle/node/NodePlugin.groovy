@@ -1,5 +1,6 @@
 package com.moowork.gradle.node
 
+
 import com.moowork.gradle.node.npm.NpmInstallTask
 import com.moowork.gradle.node.npm.NpmSetupTask
 import com.moowork.gradle.node.npm.NpmTask
@@ -23,6 +24,8 @@ class NodePlugin
 
     private NpmSetupTask npmSetupTask
 
+    private NpmInstallTask npmInstallTask
+
     private YarnSetupTask yarnSetupTask
 
     @Override
@@ -40,6 +43,7 @@ class NodePlugin
             this.config.variant = new VariantBuilder( this.config ).build()
             configureSetupTask()
             configureNpmSetupTask()
+            configureNpmInstallTask()
             configureYarnSetupTask()
         }
     }
@@ -53,7 +57,7 @@ class NodePlugin
 
     private void addTasks()
     {
-        this.project.tasks.create( NpmInstallTask.NAME, NpmInstallTask )
+        this.npmInstallTask = this.project.tasks.create( NpmInstallTask.NAME, NpmInstallTask )
         this.project.tasks.create( YarnInstallTask.NAME, YarnInstallTask )
         this.setupTask = this.project.tasks.create( SetupTask.NAME, SetupTask )
         this.npmSetupTask = this.project.tasks.create( NpmSetupTask.NAME, NpmSetupTask )
@@ -122,6 +126,11 @@ class NodePlugin
     private void configureNpmSetupTask()
     {
         this.npmSetupTask.configureVersion( this.config.npmVersion )
+    }
+
+    private void configureNpmInstallTask()
+    {
+        this.npmInstallTask.configureInstallCommand( this.config.npmVersionsFromPackageLock, this.config.npmVersion )
     }
 
     private void configureYarnSetupTask()

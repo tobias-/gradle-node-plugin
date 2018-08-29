@@ -29,6 +29,8 @@ class NodeExtension
 
     boolean download = false
 
+    boolean npmVersionsFromPackageLock = false
+
     Variant variant
 
     NodeExtension( final Project project )
